@@ -1,13 +1,14 @@
 import { Document, Query } from 'mongoose';
 
-import { IQuery } from '../types/interfaces/query.interface';
+import { IQuery } from '@/types';
 
 export class ApiFeatures<T extends Document> {
   paginationResult: {
     totalPages: number;
     page: number;
     limit: number;
-  } = { totalPages: 0, page: 0, limit: 0 };
+    total : number,
+  } = { totalPages: 0, page: 0, limit: 0, total:0 };
   data: T[] = [];
   constructor(
     public mongooseQuery: Query<T[], T>,
@@ -109,6 +110,7 @@ export class ApiFeatures<T extends Document> {
       totalPages,
       page: pageNumber,
       limit: limitNumber,
+      total : total,
     };
 
     this.data = await this.mongooseQuery;

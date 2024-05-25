@@ -1,7 +1,7 @@
 import expressAsyncHandler from 'express-async-handler';
 import { Request, Response } from 'express';
 
-import { NotFoundError } from '@/error';
+import { NotFoundError } from '@/errors';
 import { MessageType } from '@/types/enums';
 
 export const globalNotFoundMiddleware = expressAsyncHandler(

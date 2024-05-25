@@ -1,7 +1,8 @@
-import { Types } from 'mongoose';
-
 import { IProperty } from '@/types';
 
-export interface IAd extends IProperty {
-  userId: Types.ObjectId;
+export interface IAd extends IProperty {}
+export interface updateAdBody {
+  area?: string;
+  price?: number;
+  description?: string;
 }

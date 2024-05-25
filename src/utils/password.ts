@@ -1,4 +1,5 @@
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
+
 export class Password {
   static hash(plainText: string): string {
     const salt = bcrypt.genSaltSync(Number(process.env.BCRYPT_SALT));

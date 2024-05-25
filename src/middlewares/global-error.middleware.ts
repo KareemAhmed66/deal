@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ApiError, InternalServerError } from '@/error';
+import { ApiError, InternalServerError } from '@/errors';
 
 export const globalErrorMiddleware = (
   err: Error | ApiError,

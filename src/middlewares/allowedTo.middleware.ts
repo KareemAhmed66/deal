@@ -2,7 +2,7 @@ import { UserRole } from '@/types';
 import expressAsyncHandler from 'express-async-handler';
 import { Request, Response, NextFunction } from 'express';
 
-import { UnauthorizedError } from '@/error';
+import { UnauthorizedError } from '@/errors';
 
 export const allowedTo = (...roles: UserRole[]) =>
   expressAsyncHandler(
