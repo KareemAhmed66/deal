@@ -46,3 +46,5 @@ app.listen(PORT, () => {
   db_connection();
   console.log(`Server listening on port ${PORT}`.cyan.bold);
 });
+
+export default app;

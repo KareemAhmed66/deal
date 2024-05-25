@@ -81,6 +81,7 @@ export const matchAds = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
     const { page, limit } = req.query;
+
     const { currentPage, itemsPerPage } = getPaginationOptions(
       page as string | undefined,
       limit as string | undefined,

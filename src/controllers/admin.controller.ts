@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import { StatusCodes } from 'http-status-codes';
 
-import { adminService } from '@/services';
+import { adminService, userService } from '@/services';
 import { ApiResponse, getPagination, getPaginationOptions } from '@/utils';
 import { IQuery, MessageType } from '@/types';
 import { BadRequestError } from '@/errors';
@@ -29,6 +29,33 @@ export const getUsersStatistics = expressAsyncHandler(
       messages: [
         {
           message: 'Users statistics',
+          type: MessageType.SUCCESS,
+        },
+      ],
+      statusCode: StatusCodes.OK,
+      data,
+      pagination: getPagination({
+        total: paginationResult.total,
+        limit: paginationResult.limit,
+        length: data.length,
+        page: paginationResult.page,
+      }),
+    });
+
+    res.status(response.statusCode).json(response);
+  },
+);
+
+export const getAllUsers = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    const { data, paginationResult } = await adminService.getAllUsers(
+      req.query as IQuery,
+    );
+
+    const response = new ApiResponse({
+      messages: [
+        {
+          message: 'All users',
           type: MessageType.SUCCESS,
         },
       ],
