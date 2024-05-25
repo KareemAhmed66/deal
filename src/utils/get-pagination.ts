@@ -33,5 +33,7 @@ export const getPagination = ({
     limit,
     pages,
     total,
+    hasNextPage: page < pages,
+    hasPreviousPage: page > 1,
   };
 };

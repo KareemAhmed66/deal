@@ -7,8 +7,17 @@ export class ApiFeatures<T extends Document> {
     totalPages: number;
     page: number;
     limit: number;
-    total : number,
-  } = { totalPages: 0, page: 0, limit: 0, total:0 };
+    total: number;
+    hasPrev: boolean;
+    hasNext: boolean;
+  } = {
+    totalPages: 0,
+    page: 0,
+    limit: 0,
+    total: 0,
+    hasPrev: false,
+    hasNext: false,
+  };
   data: T[] = [];
   constructor(
     public mongooseQuery: Query<T[], T>,
@@ -104,13 +113,16 @@ export class ApiFeatures<T extends Document> {
     });
     const total = await countQuery.countDocuments();
     const totalPages = Math.ceil(total / limitNumber);
-
+    const hasPrev = pageNumber > 1;
+    const hasNext = pageNumber < totalPages;
     this.mongooseQuery = this.mongooseQuery.skip(skip).limit(limitNumber);
     this.paginationResult = {
       totalPages,
       page: pageNumber,
       limit: limitNumber,
-      total : total,
+      total: total,
+      hasPrev,
+      hasNext,
     };
 
     this.data = await this.mongooseQuery;

@@ -19,8 +19,6 @@ const getUserCounts = async (
     { $count: 'requestCount' },
   ]);
 
-  console.log(adsCount, requestsCount);
-
   return {
     adCount: adsCount.length > 0 ? adsCount[0].adCount : 0,
     requestCount: requestsCount.length > 0 ? requestsCount[0].requestCount : 0,
@@ -86,8 +84,6 @@ const getUserStatistics = async (
   });
 
   const enrichedData = await Promise.all(userStatisticsPromises);
-
-  console.log(enrichedData);
 
   return {
     data: enrichedData,

@@ -8,6 +8,8 @@ export interface ApiPagination {
   page: number;
   pages: number;
   length: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }
 
 interface ApiResponseOptions {
@@ -49,6 +51,8 @@ export class ApiResponse {
         length: pagination.length,
         limit: pagination.limit,
         total: pagination.total,
+        hasNextPage: pagination.hasNextPage,
+        hasPreviousPage: pagination.hasPreviousPage,
       };
     }
     this.data = data;
